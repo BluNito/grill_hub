@@ -1,0 +1,31 @@
+{
+  "name": "grill_hub",
+  "version": "1.0.0",
+  "description": "A web server for a typical online dining service capable of creating users, initiating orders and accepting payments. (PWS Mini project)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "author": "Mukul P(179303088) & Kriti K(179303079)",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.788.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "gravatar": "^1.8.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.13",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "path": "^0.12.7",
+    "razorpay": "^2.0.6",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
