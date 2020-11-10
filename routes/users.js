@@ -3,10 +3,12 @@ const router = express.Router();
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../utils/auth");
 const { encryptKey } = require("../config/keys");
 const {
-  validateRegisterInput,
-  validateLoginInput,
+  validateUserRegistration,
+  validateUserLogin,
+  validateUserUpdate,
 } = require("../utils/validation/user_val");
 const User = require("../models/Users");
 
@@ -34,7 +36,7 @@ const createPayload = (user) => {
 // @desc    Register a user
 // @access  public
 router.post("/register", async (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateUserRegistration(req.body);
   if (!isValid) return res.status(400).json(errors);
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -70,7 +72,7 @@ router.post("/register", async (req, res) => {
 // @desc    Register a user
 // @access  public
 router.post("/login", async (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+  const { errors, isValid } = validateUserLogin(req.body);
   if (!isValid) return res.status(400).json(errors);
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -86,6 +88,39 @@ router.post("/login", async (req, res) => {
     res
       .status(500)
       .json({ error: "An unknown error has occurred during login" });
+  }
+});
+
+// @route   PATCH api/users/update
+// @desc    Update user info
+// @access  private
+router.patch("/update", auth.isUser, async (req, res) => {
+  const { errors, isValid } = validateUserUpdate(req.body);
+  if (!isValid) return res.json(errors);
+  const updateFields = {};
+  try {
+    if (req.body.fname) updateFields.fname = req.body.fname;
+    if (req.body.lname) updateFields.lname = req.body.lname;
+    if (req.body.email) updateFields.email = req.body.email;
+    if (req.body.contact) updateFields.contact = req.body.contact;
+    if (req.body.address) updateFields.address = req.body.address;
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      const password = await bcrypt.hash(req.body.password, salt);
+      updateFields.password = password;
+    }
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $set: updateFields },
+      { new: true }
+    );
+    const cleanedUser = extractUserDetails(user, req.headers.authorization);
+    return res.json(cleanedUser);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      error: "An unknown error ocurred during user information update",
+    });
   }
 });
 
