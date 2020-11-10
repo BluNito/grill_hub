@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const users = require("./routes/users");
-// const items = require("./routes/foods");
+const dishes = require("./routes/dishes");
 // const orders = require("./routes/orders");
 
 //Creating the server
@@ -23,6 +23,7 @@ mongoose
 
 //Routes for the server
 app.use("/api/users", users);
+app.use("/api/dishes", dishes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

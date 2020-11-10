@@ -5,12 +5,12 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../utils/auth");
 const { encryptKey } = require("../config/keys");
+const User = require("../models/Users");
 const {
   validateUserRegistration,
   validateUserLogin,
   validateUserUpdate,
 } = require("../utils/validation/user_val");
-const User = require("../models/Users");
 
 const extractUserDetails = (user, token) => {
   return {
