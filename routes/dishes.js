@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const auth = require("../utils/auth");
+const { isAdmin, isUser } = require("../utils/auth");
 const Dish = require("../models/Dishes");
 const { uploadFile } = require("../utils/uploader");
 const { validateDishEntry } = require("../utils/validation/dish_val");
@@ -33,7 +33,7 @@ const hasValidFile = (files) => {
 // @route   POST api/dishes/add
 // @desc    Add a dish
 // @access  Admin
-router.post("/add", [auth.isAdmin, multer().any()], async (req, res) => {
+router.post("/add", [isAdmin, multer().any()], async (req, res) => {
   req.body.type = convertToArray(req.body.type);
   console.log(req.body.type);
   const { errors, isValid } = validateDishEntry(req.body);
@@ -67,7 +67,7 @@ router.post("/add", [auth.isAdmin, multer().any()], async (req, res) => {
 // @route   PATCH api/dishes/update
 // @desc    Update a dish
 // @access  Admin
-router.patch("/update", [auth.isAdmin, multer().any()], async (req, res) => {
+router.patch("/update", [isAdmin, multer().any()], async (req, res) => {
   req.body.type = convertToArray(req.body.type);
   const { errors, isValid } = validateDishEntry(req.body);
   if (!isValid) return res.status(400).json(errors);
@@ -104,7 +104,7 @@ router.patch("/update", [auth.isAdmin, multer().any()], async (req, res) => {
 // @route   DELETE api/dishes/delete
 // @desc    Delete a dish
 // @access  Admin
-router.delete("/delete", auth.isAdmin, async (req, res) => {
+router.delete("/delete", isAdmin, async (req, res) => {
   try {
     await Dish.findByIdAndDelete(req.body.id);
     return res.json({ deleted: true });
@@ -118,7 +118,7 @@ router.delete("/delete", auth.isAdmin, async (req, res) => {
 // @desc    List dishes
 // @params  page,tags,sort_by,ascending
 // @access  Private
-router.get("/list", auth.isUser, async (req, res) => {
+router.get("/list", isUser, async (req, res) => {
   req.query.tags = convertStringToArray(req.query.tags);
   try {
     let dishes = await Dish.find({
