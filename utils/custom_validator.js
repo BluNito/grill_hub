@@ -5,9 +5,9 @@ const isEmpty = (value) => {
   return (
     value === undefined ||
     value === null ||
-    (typeof value === "object" && Object.keys(value).length === 0) ||
-    (typeof value === "string" && value.trim().length === 0) ||
-    (typeof value === "Array" && value.length === 0)
+    (typeof value === typeof {} && Object.keys(value).length === 0) ||
+    (typeof value === typeof "" && value.trim().length === 0) ||
+    (typeof value === typeof [] && value.length === 0)
   );
 };
 
@@ -17,7 +17,15 @@ const isEmail = (value) => {
 };
 
 const isLength = (value, { min, max } = {}) => {
-  return validator.isLength(safeAssign(value, ""), { min: min, max: max });
+  if (typeof value === typeof "" || typeof value === typeof []) {
+    let minValid, maxValid;
+    if (min == null) minValid = true;
+    else if (value.length >= min) minValid = true;
+    if (max == null) maxValid = true;
+    else if (value.length <= max) maxValid = true;
+    return minValid && maxValid;
+  }
+  return false;
 };
 
 const isEqual = (a, b) => {
