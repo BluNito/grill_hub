@@ -1,0 +1,60 @@
+html {
+  scroll-behavior: smooth;
+}
+
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("/Fonts/Roboto/Roboto-Light.ttf");
+//   font-weight: 300;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("/Fonts/Roboto/Roboto-Regular.ttf");
+//   font-weight: 400;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("/Fonts/Roboto/Roboto-Medium.ttf");
+//   font-weight: 500;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("/Fonts/Roboto/Roboto-Bold.ttf");
+//   font-weight: 700;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: "Architect";
+//   src: url("/Fonts/ArchitectsDaughter-Regular.ttf");
+//   font-weight: 400;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: "Satisfy";
+//   src: url("/Fonts/Satisfy-Regular.ttf");
+//   font-weight: 400;
+//   font-display: swap;
+// }
+
+body {
+  font-family: Roboto;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  transition-duration: 0.3s;
+  color: $accent-color;
+}
+
+a:hover {
+  text-decoration: none;
+  color: $main-color;
+}
