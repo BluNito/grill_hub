@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import authReducer from "./reducers/authReducer";
 import comReducer from "./reducers/comReducer";
 import dishReducer from "./reducers/dishReducer";
+import orderReducer from "./reducers/orderReducer";
 const initialState = {};
 const middleware = [thunk];
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   coms: comReducer,
   dishes: dishReducer,
+  order: orderReducer,
 });
 const store = createStore(
   rootReducer,

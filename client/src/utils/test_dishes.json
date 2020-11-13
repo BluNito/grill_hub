@@ -3,7 +3,7 @@
     "id": "5facc2b7dd03cf3554aa6731",
     "name": "Test dish 1",
     "price": 10,
-    "desc": "Some desc",
+    "desc": "Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc ",
     "cover": "https://grillhub.s3.ap-south-1.amazonaws.com/1605175116102.jpg",
     "type": ["br", "lu", "di"]
   },
@@ -11,7 +11,7 @@
     "id": "5facc2f5630aa624c016e2d2",
     "name": "Test dish 2",
     "price": 10,
-    "desc": "Some desc",
+    "desc": "Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc ",
     "cover": "https://grillhub.s3.ap-south-1.amazonaws.com/1605175142975.jpg",
     "type": ["br", "lu", "di"]
   },
@@ -19,7 +19,7 @@
     "id": "5faccadac4b0b52d34e3899a",
     "name": "Test dish 3",
     "price": 20,
-    "desc": "Some desc",
+    "desc": "Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc ",
     "cover": "https://grillhub.s3.ap-south-1.amazonaws.com/1605175161441.jpg",
     "type": ["br", "lu", "di", "sp"]
   },
@@ -27,7 +27,7 @@
     "id": "5faccc8f63604e30a87a500b",
     "name": "Test dish 4",
     "price": 20,
-    "desc": "Some desc",
+    "desc": "Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc ",
     "cover": "https://grillhub.s3.ap-south-1.amazonaws.com/1605175174797.jpg",
     "type": ["br", "lu", "di", "sp"]
   },
@@ -35,7 +35,7 @@
     "id": "5fad05086a7a4721140c2774",
     "name": "Test dish 7",
     "price": 20,
-    "desc": "Some desc",
+    "desc": "Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc ",
     "cover": "https://grillhub.s3.ap-south-1.amazonaws.com/1605175341941.jpg",
     "type": ["br", "lu", "sp"]
   },
@@ -43,7 +43,7 @@
     "id": "5fad05b8447f523b903796a5",
     "name": "Test dish 9",
     "price": 20,
-    "desc": "Some desc",
+    "desc": "Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc Some desc ",
     "cover": "https://grillhub.s3.ap-south-1.amazonaws.com/1605175219399.jpg",
     "type": ["br", "lu", "sp"]
   }

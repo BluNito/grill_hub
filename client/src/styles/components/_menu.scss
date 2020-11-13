@@ -7,4 +7,37 @@
     font-family: Satisfy;
     text-decoration: underline;
   }
+  .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .menu-item {
+    margin: 5px;
+    img {
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .menu-content {
+      width: 230px;
+      margin: 0px 10px;
+      padding-bottom: 5px;
+    }
+    .menu-item-name {
+      font-size: $subtitle-size;
+      text-align: left;
+      color: $accent-color;
+      font-family: Courgette;
+    }
+    .menu-item-desc {
+      height: 110px;
+      font-size: $normal-size;
+      text-align: left;
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+    .menu-item-button {
+      text-align: right;
+    }
+  }
 }

@@ -1,0 +1,13 @@
+.cart-dialog-title {
+  font-size: $subtitle-size;
+  color: $main-color;
+  font-family: Satisfy;
+}
+.cart-button-section {
+  display: flex;
+  justify-content: space-between;
+}
+.cart-quantity-section {
+  display: flex;
+  margin-bottom: 10px;
+}
