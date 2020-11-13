@@ -8,7 +8,9 @@ import "./styles/styles.scss";
 
 import Landing from "./components/index";
 import Home from "./components/home";
+import Cart from "./components/cart";
 
+import { setCart } from "./store/actions/orderActions";
 import { autologin } from "./store/actions/authActions";
 import PrivateRoute from "./utils/access_routes/privateRoute";
 import PublicRoute from "./utils/access_routes/publicRoute";
@@ -34,11 +36,15 @@ const App = () => {
     };
   };
   useEffect(() => {
+    const acquireInitData = async () => {
+      store.dispatch(autologin(cookieData));
+      store.dispatch(setCart());
+    };
     console.log("Searching for cookies");
     let cookieData = Cookies.get("gh_creds");
     if (cookieData) {
       console.log("Found cookies!");
-      store.dispatch(autologin(cookieData));
+      acquireInitData();
     } else {
       store.dispatch(mainLoad(false));
     }
@@ -56,6 +62,7 @@ const App = () => {
           <Switch>
             <PublicRoute exact path="/" component={Landing} />
             <PrivateRoute exact path="/home" component={Home} />
+            <PrivateRoute exact path="/cart" component={Cart} />
           </Switch>
         </BrowserRouter>
       </Provider>

@@ -12,6 +12,7 @@ import { addToCart } from "../../store/actions/orderActions";
 
 const CartAddDialog = (props) => {
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
   const changeQuantity = (value) => {
     setQuantity((prevState) => {
       if (prevState === 1 && value === -1) return prevState;
@@ -19,8 +20,10 @@ const CartAddDialog = (props) => {
     });
   };
   const { open, dish, handleClose } = props;
-  const handleAddToCart = () => {
-    props.addToCart(dish.id, quantity);
+  const handleAddToCart = async () => {
+    setLoading(true);
+    await props.addToCart(dish.id, quantity);
+    setLoading(false);
     setQuantity(1);
     handleClose();
   };
