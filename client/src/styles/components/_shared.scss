@@ -16,3 +16,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.splash-screen {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  position: absolute;
+}

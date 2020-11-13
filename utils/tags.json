@@ -1,0 +1,30 @@
+[
+  {
+    "tagId": "al",
+    "name": "All"
+  },
+  {
+    "tagId": "re",
+    "name": "Recommended"
+  },
+  {
+    "tagId": "ho",
+    "name": "Hot"
+  },
+  {
+    "tagId": "lu",
+    "name": "Lunch"
+  },
+  {
+    "tagId": "di",
+    "name": "Dinner"
+  },
+  {
+    "tagId": "sp",
+    "name": "Spicy"
+  },
+  {
+    "tagId": "sw",
+    "name": "Sweet"
+  }
+]

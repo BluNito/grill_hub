@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const { isAdmin, isUser } = require("../utils/auth");
 const Dish = require("../models/Dishes");
+const Tags = require("../utils/tags.json");
 const { uploadFile } = require("../utils/uploader");
 const { validateDishEntry } = require("../utils/validation/dish_val");
 const {
@@ -114,16 +115,26 @@ router.delete("/delete", isAdmin, async (req, res) => {
   }
 });
 
+// @route   GET api/dishes/tags
+// @desc    List of tags
+// @access  Private
+router.get("/tags", isUser, async (req, res) => {
+  return res.json(Tags);
+});
+
 // @route   GET api/dishes/list
 // @desc    List dishes
-// @params  page,tags,sort_by,ascending
+// @params  page,tag,sort_by,ascending
 // @access  Private
 router.get("/list", isUser, async (req, res) => {
-  req.query.tags = convertStringToArray(req.query.tags);
   try {
-    let dishes = await Dish.find({
-      type: { $in: req.query.tags },
-    })
+    let dishes = await Dish.find(
+      req.query.tag !== "al"
+        ? {
+            type: { $in: req.query.tag },
+          }
+        : null
+    )
       .sort({ [req.query.sort_by]: req.query.ascending })
       .limit(100);
     dishes = dishes.map((dish) => extractDishDetails(dish));

@@ -17,7 +17,7 @@ import { mainLoad, setDimensions } from "./store/actions/comActions";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "rgb(154, 30, 30)",
+      main: "rgb(233, 8, 8)",
     },
   },
 });
