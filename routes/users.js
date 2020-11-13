@@ -40,7 +40,7 @@ router.post("/register", async (req, res) => {
   if (!isValid) return res.status(400).json(errors);
   try {
     const user = await User.findOne({ email: req.body.email });
-    if (user) return res.status(400).json({ email: "Email taken" });
+    if (user) return res.status(400).json({ register: "Email taken" });
     const avatar = gravatar.url(req.body.email, { s: "200", r: "pg", d: "mm" });
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password, salt);

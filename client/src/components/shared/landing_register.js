@@ -48,6 +48,20 @@ const LandingRegister = ({ credentials, handleChange, errors, className }) => (
     </Grid>
     <Grid item xs={12}>
       <TextField
+        label="Contact"
+        placeholder="123456789"
+        name="contact"
+        type="text"
+        value={credentials.contact}
+        onChange={handleChange}
+        fullWidth={true}
+        variant="outlined"
+        error={!!errors.contact}
+        helperText={errors.contact}
+      />
+    </Grid>
+    <Grid item xs={12}>
+      <TextField
         label="Password"
         placeholder="**********"
         name="password"
@@ -64,14 +78,14 @@ const LandingRegister = ({ credentials, handleChange, errors, className }) => (
       <TextField
         label="Confirm Password"
         placeholder="**********"
-        name="password2"
+        name="confirm_password"
         type="password"
-        value={credentials.password2}
+        value={credentials.confirm_password}
         onChange={handleChange}
         fullWidth={true}
         variant="outlined"
-        error={!!errors.password2}
-        helperText={errors.password2}
+        error={!!errors.confirm_password}
+        helperText={errors.confirm_password}
       />
     </Grid>
   </Grid>

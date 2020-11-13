@@ -1,27 +1,25 @@
 export const isEmpty = (value) => {
-  if (typeof value === typeof "a") {
-    if (value.trim() === "") return true;
-    else return false;
-  } else if (typeof value === typeof []) {
-    if (value.length === 0) return true;
-    else return false;
-  } else if (typeof value === typeof {}) {
-    if (Object.keys(value).length === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  console.log(value);
+  let empty = false;
+  if (!empty) empty = true;
+  else if (typeof value === typeof "a" && value.trim().length === 0)
+    empty = true;
+  else if (typeof value === typeof [] && value.length === 0) empty = true;
+  else if (typeof value === typeof {} && Object.keys(value).length === 0)
+    empty = true;
+  if (empty) console.log("empty value found");
+  return empty;
 };
 
 export const isLength = (value, { min, max } = {}) => {
+  console.log(`${value} ${min} ${max}`);
   if (isEmpty(value)) return false;
   if (typeof value === typeof "") value = value.trim();
   if (typeof value === typeof "" || typeof value === typeof []) {
     let validMin, validMax;
-    if (min === null) validMin = true;
+    if (isEmpty(min)) validMin = true;
     else if (value.length >= min) validMin = true;
-    if (max === null) validMax = true;
+    if (isEmpty(max)) validMax = true;
     else if (value.length <= max) validMax = true;
     return validMin && validMax;
   }
@@ -31,21 +29,23 @@ export const loginValidation = (credentials) => {
   let errors = {};
   if (isEmpty(credentials.email)) errors.email = "Email required";
   if (isEmpty(credentials.password)) errors.password = "Password required";
+  else if (isLength(credentials.password, { min: 6 }))
+    errors.password = "Password must contain atleast 6 chars";
   if (!isEmpty(errors)) return errors;
 };
 
 export const registerValidation = (credentials) => {
   let errors = {};
   if (isEmpty(credentials.fname)) errors.fname = "First name required";
-  else if (isLength(credentials.fname, { min: 2, max: 20 }))
-    errors.fname = "First name required";
+  else if (!isLength(credentials.fname, { min: 2, max: 20 }))
+    errors.fname = "First name must be atleast 2 chars";
   if (isEmpty(credentials.lname)) errors.lname = "Last name required";
   if (isEmpty(credentials.email)) errors.email = "Email required";
   if (isEmpty(credentials.contact)) errors.contact = "Contact required";
   if (isEmpty(credentials.password)) errors.password = "Password required";
-  else if (isLength(credentials.password, { min: 6 }))
-    errors.password = "Password required";
-  if (credentials.password !== credentials.password2)
-    errors.password2 = "Passwords must match";
+  else if (!isLength(credentials.password, { min: 6 }))
+    errors.password = "Password must contain atleast 6 chars";
+  if (credentials.password !== credentials.confirm_password)
+    errors.confirm_password = "Passwords must match";
   if (!isEmpty(errors)) return errors;
 };

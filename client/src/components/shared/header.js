@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -12,7 +11,6 @@ import { logout } from "../../store/actions/authActions";
 const Header = (props) => {
   const [anchorEl, setAncherEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
-  const history = useHistory();
 
   const handleAccountMenu = (mode, event) => {
     if (mode === 0) {
@@ -36,8 +34,8 @@ const Header = (props) => {
     </Menu>
   );
   return (
-    <AppBar position="static" variant="outlined" color="white">
-      <Toolbar dense={true}>
+    <AppBar position="static" variant="outlined" color="transparent">
+      <Toolbar dense="true">
         <Logo />
         <div className="grow" />
         <Button

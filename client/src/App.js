@@ -7,6 +7,7 @@ import store from "./store/store";
 import "./styles/styles.scss";
 
 import Landing from "./components/index";
+import Home from "./components/home";
 
 import { autologin } from "./store/actions/authActions";
 import PrivateRoute from "./utils/access_routes/privateRoute";
@@ -51,6 +52,7 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <PublicRoute exact path="/" component={Landing} />
+            <PrivateRoute exact path="/home" component={Home} />
           </Switch>
         </BrowserRouter>
       </Provider>
