@@ -23,7 +23,6 @@ const DishMenu = (props) => {
 
   useEffect(() => {
     const setSort = (value) => {
-      console.log(value);
       let res = {};
       if (value === 0 || value === 1) res.sortBy = "name";
       else res.sortBy = "price";

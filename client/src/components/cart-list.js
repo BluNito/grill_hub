@@ -44,7 +44,7 @@ const CartList = (props) => {
     setDeleting(false);
   };
   const headerCells = [
-    <TableCell padding="checkbox">
+    <TableCell padding="checkbox" key={0}>
       <Checkbox
         indeterminate={
           selected.length > 0 && selected.length < cartInfo.cartItems.length
@@ -57,7 +57,7 @@ const CartList = (props) => {
     </TableCell>,
     ...headers.map((header, index) => (
       <TableCell
-        key={index}
+        key={index + 1}
         align={header.align}
         style={{ minWidth: header.minWidth }}
       >
@@ -80,7 +80,7 @@ const CartList = (props) => {
         <TableCell align={headers[3].align}>{`₹${item.totalPrice}`}</TableCell>
       </TableRow>
     )),
-    <TableRow>
+    <TableRow key={cartInfo.cartItems.length + 1}>
       <TableCell rowSpan={1} />
       <TableCell align="right" colSpan={3}>
         <div className="cart-total">Total</div>
