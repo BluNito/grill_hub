@@ -1,0 +1,24 @@
+{
+  "headers": [
+    {
+      "name": "Name",
+      "align": "left",
+      "minWidth": 100
+    },
+    {
+      "name": "Price",
+      "align": "right",
+      "minWidth": 10
+    },
+    {
+      "name": "Quantity",
+      "align": "right",
+      "minWidth": 10
+    },
+    {
+      "name": "Total",
+      "align": "right",
+      "minWidth": 20
+    }
+  ]
+}

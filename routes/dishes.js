@@ -10,17 +10,7 @@ const {
   convertToArray,
   convertStringToArray,
 } = require("../utils/convert_to_array");
-
-const extractDishDetails = (dish) => {
-  return {
-    id: dish._id,
-    name: dish.name,
-    price: dish.price,
-    desc: dish.desc,
-    cover: dish.cover,
-    type: dish.type,
-  };
-};
+const { extractDishDetails } = require("../utils/extractors");
 
 const hasValidFile = (files) => {
   let checks = {};
