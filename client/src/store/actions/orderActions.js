@@ -46,9 +46,21 @@ export const setCartInfo = () => async (dispatch) => {
 };
 
 export const removeFromCart = (ids) => async (dispatch) => {
-  console.log("Removing from cart");
   try {
     const res = await axios.patch("/api/orders/removefromcart", ids);
+    dispatch({
+      type: SET_CART,
+      payload: res.data,
+    });
+  } catch (e) {
+    console.log(e);
+    return e.response.data;
+  }
+};
+
+export const dropCart = () => async (dispatch) => {
+  try {
+    const res = await axios.delete("/api/orders/dropcart");
     dispatch({
       type: SET_CART,
       payload: res.data,

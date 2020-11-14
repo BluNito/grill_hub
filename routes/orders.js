@@ -39,8 +39,8 @@ const getCartInfo = async (id) => {
     return {
       id: dishes[index]._id,
       name: dishes[index].name,
-      quantity: cart.cart[index].quantity,
       price: dishes[index].price,
+      quantity: cart.cart[index].quantity,
       totalPrice: dishes[index].price * cart.cart[index].quantity,
     };
   });
@@ -135,7 +135,6 @@ router.post("/addtocart", isUser, async (req, res) => {
 // @desc    Add items to the cart
 // @access  Private
 router.patch("/removefromcart", isUser, async (req, res) => {
-  console.log(req.body);
   try {
     let cart = await Cart.findOne({ cid: req.user.id });
     if (!cart) return res.status(400).json({ cart: "Cart does not exist" });
@@ -157,12 +156,34 @@ router.patch("/removefromcart", isUser, async (req, res) => {
   }
 });
 
+// @route   DELETE api/orders/dropcart
+// @desc    Add items to the cart
+// @access  Private
+router.delete("/dropcart", isUser, async (req, res) => {
+  try {
+    let cart = await Cart.findOne({ cid: req.user.id });
+    if (!cart) return res.status(400).json({ cart: "Cart does not exist" });
+    cart.cart = [];
+    cart.inCart = 0;
+    const savedCart = await cart.save();
+    cleanedCart = extractCartDetails(savedCart);
+    return res.json(cleanedCart);
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(500)
+      .json({ error: "An error has occurred during cart deletion" });
+  }
+});
+
 // @route   POST api/orders/create
 // @desc    Create an order
 // @access  Private
 router.post("/create", isUser, async (req, res) => {
   try {
     const cartInfo = await getCartInfo(req.user.id);
+    if (cartInfo.total < 1)
+      return res.status(400).json({ cart: "Add more items to cart" });
     const options = {
       amount: cartInfo.total * 100,
       currency: "INR",
@@ -182,8 +203,32 @@ router.post("/create", isUser, async (req, res) => {
       total: cartInfo.total,
       paid: false,
     });
-    // await order.save();
+    await order.save();
     return res.json(bill);
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(500)
+      .json({ error: "An error has occured during order creation" });
+  }
+});
+
+// @route   POST api/orders/complete
+// @desc    Complete an order
+// @access  Private
+router.post("/complete", isUser, async (req, res) => {
+  try {
+    const cart = await Cart.findOneAndUpdate(
+      { cid: req.user.id },
+      {
+        paid: true,
+      },
+      {
+        new: true,
+      }
+    );
+    const cleanedCart = extractCartDetails(cart);
+    return res.json(cleanedCart);
   } catch (e) {
     console.log(e);
     return res

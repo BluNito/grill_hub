@@ -5,7 +5,9 @@ import TableCell from "@material-ui/core/TableCell";
 const KeyValueTableCell = (props) => {
   return (
     <TableRow>
-      <TableCell width={40}>{props.table_key}</TableCell>
+      <TableCell width={props.width ? props.width : 40}>
+        {props.table_key}
+      </TableCell>
       <TableCell>
         {props.children ? props.children : props.table_value}
       </TableCell>

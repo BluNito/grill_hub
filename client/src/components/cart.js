@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Header from "./shared/header";
 import Grid from "@material-ui/core/Grid";
-import {
-  setCartInfo,
-  removeFromCart,
-  initiatePayment,
-} from "../store/actions/orderActions";
+import { setCartInfo, removeFromCart } from "../store/actions/orderActions";
 import CartList from "./cart-list";
 import CartCheckout from "./cart-checkout";
 import Splash from "./shared/splash";
@@ -23,13 +19,6 @@ const Cart = (props) => {
       setItemSize(6);
     }
   }, [dimensions]);
-
-  const initiatePayment = async (handler) => {
-    const options = await props.initiatePayment();
-    options.handler = handler;
-    const rzpl = new window.Razorpay(options);
-    rzpl.open();
-  };
 
   const removeFromCart = async (ids) => {
     await props.removeFromCart(ids);
@@ -59,10 +48,7 @@ const Cart = (props) => {
               <CartList cartInfo={cartInfo} removeFromCart={removeFromCart} />
             </Grid>
             <Grid item xs={itemSize}>
-              <CartCheckout
-                total={cartInfo.total}
-                initiatePayment={initiatePayment}
-              />
+              <CartCheckout total={cartInfo.total} />
             </Grid>
           </Grid>
         </div>
@@ -79,5 +65,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   setCartInfo,
   removeFromCart,
-  initiatePayment,
 })(Cart);
