@@ -22,6 +22,7 @@ const MenuItem = (props) => {
           <div className="menu-item-desc">{dish.desc}</div>
           <Divider />
           <div className="menu-item-button">
+            <div className="menu-item-price">₹{dish.price}</div>
             <Button
               variant="contained"
               color="secondary"

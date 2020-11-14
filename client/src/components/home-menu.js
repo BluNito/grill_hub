@@ -6,6 +6,9 @@ import IconButton from "@material-ui/core/IconButton";
 import SortIcon from "@material-ui/icons/Sort";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { setDishes } from "../store/actions/dishActions";
 import SplashScreen from "./shared/splash";
 import DishMenuItem from "./shared/menu-item";
@@ -20,8 +23,9 @@ const DishMenu = (props) => {
 
   useEffect(() => {
     const setSort = (value) => {
+      console.log(value);
       let res = {};
-      if (value === 0 || value === 2) res.sortBy = "name";
+      if (value === 0 || value === 1) res.sortBy = "name";
       else res.sortBy = "price";
       if (value === 1 || value === 3) res.ascending = -1;
       else res.ascending = 1;
@@ -65,15 +69,34 @@ const DishMenu = (props) => {
   const sortMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       id="sort-menu"
       open={isMenuOpen}
       onClose={() => handleSortMenu(0)}
     >
-      <MenuItem onClick={() => handleSortBy(0)}>Name</MenuItem>
-      <MenuItem onClick={() => handleSortBy(1)}>Price</MenuItem>
-      <MenuItem onClick={() => handleSortBy(2)}>Name</MenuItem>
-      <MenuItem onClick={() => handleSortBy(3)}>Price</MenuItem>
+      <MenuItem onClick={() => handleSortBy(0)}>
+        <ListItemIcon>
+          <ArrowUpwardIcon />
+        </ListItemIcon>
+        Name
+      </MenuItem>
+      <MenuItem onClick={() => handleSortBy(1)}>
+        <ListItemIcon>
+          <ArrowDownwardIcon />
+        </ListItemIcon>
+        Name
+      </MenuItem>
+      <MenuItem onClick={() => handleSortBy(2)}>
+        <ListItemIcon>
+          <ArrowUpwardIcon />
+        </ListItemIcon>
+        Price
+      </MenuItem>
+      <MenuItem onClick={() => handleSortBy(3)}>
+        <ListItemIcon>
+          <ArrowDownwardIcon />
+        </ListItemIcon>
+        Price
+      </MenuItem>
     </Menu>
   );
 

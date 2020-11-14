@@ -33,7 +33,13 @@
       overflow: hidden;
     }
     .menu-item-button {
-      text-align: right;
+      display: flex;
+      justify-content: space-between;
+    }
+    .menu-item-price {
+      font-size: $minititle-size;
+      color: $accent-color;
+      font-family: Courgette;
     }
   }
 }
