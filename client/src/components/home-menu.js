@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import Grid from "@material-ui/core/Grid";
 import { setDishes } from "../store/actions/dishActions";
 import SplashScreen from "./shared/splash";
 import MenuItem from "./shared/menu-item";
@@ -9,7 +10,8 @@ const Menu = (props) => {
   const [loading, setLoading] = useState(false);
   const [ascending, setAscending] = useState(true);
   const [sortBy, setSoryBy] = useState(0);
-  const { tag, setDishes } = props;
+  const [itemSize, setItemSize] = useState(4);
+  const { tag, setDishes, dimensions } = props;
   useEffect(() => {
     const setSort = (value) => {
       if (value === 0) return "name";
@@ -29,23 +31,34 @@ const Menu = (props) => {
     loadMenu(tag);
   }, [tag, setDishes, sortBy, ascending]);
 
+  useEffect(() => {
+    if (dimensions.width > 1300) setItemSize(2);
+    else if (dimensions.width > 860) setItemSize(3);
+    else if (dimensions.width > 660) setItemSize(4);
+    else if (dimensions.width > 430) setItemSize(6);
+    else setItemSize(12);
+  }, [dimensions]);
+
   if (loading) return <SplashScreen />;
   return (
     <div className="menu">
       <div className="menu-title">
         {tag.tagId === "al" ? "All our dishes" : `What's ${tag.name}?`}
       </div>
-      <div className="menu-list">
+      <Grid container spacing={0}>
         {TestDishes.map((dish) => (
-          <MenuItem dish={dish} key={dish.id} />
+          <Grid item xs={itemSize}>
+            <MenuItem dish={dish} key={dish.id} />
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   dishes: state.dishes.dishes,
+  dimensions: state.coms.dimensions,
 });
 
 export default connect(mapStateToProps, { setDishes })(Menu);

@@ -5,9 +5,24 @@
 }
 .cart-button-section {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 .cart-quantity-section {
   display: flex;
   margin-bottom: 10px;
+}
+@media(max-width:450px) {
+  .cart-button-section {
+    display: block;
+    text-align: center;
+  }
+  .cart-quantity-section {
+    justify-content: center;
+  }
+}
+@media(max-width:380px) {
+  .cart-quantity-section {
+    display: block;
+  }
 }

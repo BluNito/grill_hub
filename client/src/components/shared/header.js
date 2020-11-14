@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import AppBar from "@material-ui/core/AppBar";
@@ -11,12 +11,18 @@ import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import Logo from "./logo";
 import Spacer from "./spacer";
+import { setCart } from "../../store/actions/orderActions";
 import { logout } from "../../store/actions/authActions";
 
 const Header = (props) => {
   const [anchorEl, setAncherEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const history = useHistory();
+  const { setCart } = props;
+
+  useEffect(() => {
+    setCart();
+  }, [setCart]);
 
   const handleAccountMenu = (mode, event) => {
     if (mode === 0) {
@@ -67,4 +73,4 @@ const mapStateToProps = (state) => ({
   inCart: state.order.inCart,
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+export default connect(mapStateToProps, { setCart, logout })(Header);

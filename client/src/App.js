@@ -10,7 +10,6 @@ import Landing from "./components/index";
 import Home from "./components/home";
 import Cart from "./components/cart";
 
-import { setCart } from "./store/actions/orderActions";
 import { autologin } from "./store/actions/authActions";
 import PrivateRoute from "./utils/access_routes/privateRoute";
 import PublicRoute from "./utils/access_routes/publicRoute";
@@ -36,24 +35,25 @@ const App = () => {
     };
   };
   useEffect(() => {
-    const acquireInitData = async () => {
-      store.dispatch(autologin(cookieData));
-      store.dispatch(setCart());
-    };
     console.log("Searching for cookies");
     let cookieData = Cookies.get("gh_creds");
     if (cookieData) {
       console.log("Found cookies!");
-      acquireInitData();
+      store.dispatch(autologin(cookieData));
     } else {
       store.dispatch(mainLoad(false));
     }
+  }, []);
+
+  useEffect(() => {
+    console.log("Listening to window size");
     const handleResize = () => {
       store.dispatch(setDimensions(getWindowDimensions()));
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  });
 
   return (
     <ThemeProvider theme={theme}>
