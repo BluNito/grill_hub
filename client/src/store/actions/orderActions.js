@@ -58,3 +58,25 @@ export const removeFromCart = (ids) => async (dispatch) => {
     return e.response.data;
   }
 };
+
+export const initiatePayment = () => async (_) => {
+  try {
+    const res = await axios.post("/api/orders/create");
+    return res.data;
+  } catch (e) {
+    console.log(e);
+    return e.response.data;
+  }
+};
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
+  };
+};
+
+export const clearCartItems = () => {
+  return {
+    type: CLEAR_CART_ITEMS,
+  };
+};

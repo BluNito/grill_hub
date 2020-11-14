@@ -77,7 +77,7 @@ const CartList = (props) => {
         <TableCell align={headers[0].align}>{item.name}</TableCell>
         <TableCell align={headers[1].align}>{item.price}</TableCell>
         <TableCell align={headers[2].align}>{item.quantity}</TableCell>
-        <TableCell align={headers[3].align}>{`₹${item.total}`}</TableCell>
+        <TableCell align={headers[3].align}>{`₹${item.totalPrice}`}</TableCell>
       </TableRow>
     )),
     <TableRow>

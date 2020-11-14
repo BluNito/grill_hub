@@ -16,7 +16,7 @@ const MenuItem = (props) => {
   return (
     <div className="menu-item">
       <Paper>
-        <img src={dish.cover} />
+        <img src={dish.cover} alt="sample" />
         <div className="menu-content">
           <div className="menu-item-name">{dish.name}</div>
           <div className="menu-item-desc">{dish.desc}</div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import Toolbar from "@material-ui/core/Toolbar";
 import Paper from "@material-ui/core/Paper";
@@ -8,9 +8,24 @@ import TableBody from "@material-ui/core/TableBody";
 import KeyValueTableCell from "./shared/key_value_table_cell";
 import Spacer from "./shared/spacer";
 import Button from "@material-ui/core/Button";
+import Spinner from "./shared/spinner";
 
 const CartCheckout = (props) => {
-  const { user, total } = props;
+  const { user, total, initiatePayment } = props;
+  const [loading, setLoading] = useState(false);
+  const [paid, setPaid] = useState(false);
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    await initiatePayment();
+    setLoading(false);
+  };
+  const handleComplete = (response) => {
+    console.log(response);
+    console.log("woooo");
+    setPaid(true);
+  };
+
   return (
     <section className="cart-checkout-section">
       <Toolbar>
@@ -37,9 +52,19 @@ const CartCheckout = (props) => {
         </TableContainer>
       </Paper>
       <Spacer v={20} />
-      <Button variant="contained" color="secondary">
-        {`Pay ₹${total}`}
-      </Button>
+      {loading ? (
+        <Spinner />
+      ) : paid ? (
+        <Button variant="outlined">Paid</Button>
+      ) : (
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => handleCheckout(handleComplete)}
+        >
+          {`Pay ₹${total}`}
+        </Button>
+      )}
     </section>
   );
 };

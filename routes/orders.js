@@ -7,10 +7,7 @@ const Order = require("../models/Orders");
 const Cart = require("../models/Carts");
 const { isUser } = require("../utils/auth");
 const { forceToInteger } = require("../utils/forcers");
-const {
-  validateOrderCreate,
-  validateCartAdd,
-} = require("../utils/validation/ord_val");
+const { validateCartAdd } = require("../utils/validation/ord_val");
 const { extractCartDetails } = require("../utils/extractors");
 
 const instance = new Razorpay({
@@ -44,7 +41,7 @@ const getCartInfo = async (id) => {
       name: dishes[index].name,
       quantity: cart.cart[index].quantity,
       price: dishes[index].price,
-      total: dishes[index].price * cart.cart[index].quantity,
+      totalPrice: dishes[index].price * cart.cart[index].quantity,
     };
   });
   return {
@@ -164,32 +161,10 @@ router.patch("/removefromcart", isUser, async (req, res) => {
 // @desc    Create an order
 // @access  Private
 router.post("/create", isUser, async (req, res) => {
-  const { errors, isValid } = validateOrderCreate(req.body);
-  if (!isValid) return res.status(400).json(errors);
   try {
-    const orderedDishes = await Dish.find(
-      {
-        _id: { $in: req.body.map((doc) => doc.id) },
-      },
-      "price name"
-    );
-    let total = 0;
-    const cart = req.body
-      .filter((item) => item.quantity >= 1)
-      .map((item) => {
-        dish = orderedDishes.find((od) => od._id == item.id);
-        const totalPrice = dish.price * item.quantity;
-        total = total + totalPrice;
-        return {
-          fid: dish._id,
-          name: dish.name,
-          price: dish.price,
-          quantity: item.quantity,
-          totalPrice: totalPrice,
-        };
-      });
+    const cartInfo = await getCartInfo(req.user.id);
     const options = {
-      amount: total * 100,
+      amount: cartInfo.total * 100,
       currency: "INR",
     };
     let bill = await instance.orders.create(options);
@@ -203,8 +178,8 @@ router.post("/create", isUser, async (req, res) => {
     const order = new Order({
       oid: bill.id,
       cid: req.user.id,
-      cart: cart,
-      total: total,
+      cart: cartInfo.cartItems,
+      total: cartInfo.total,
       paid: false,
     });
     // await order.save();

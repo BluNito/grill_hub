@@ -16,7 +16,6 @@ export const setDishes = (query) => async (dispatch) => {
 };
 
 export const setTags = () => async (dispatch) => {
-  console.log("getting tags");
   try {
     const res = await axios.get("/api/dishes/tags");
     dispatch({

@@ -14,7 +14,7 @@ const OrderSchema = new Schema({
   cart: {
     type: [
       {
-        fid: {
+        id: {
           type: Schema.Types.ObjectId,
           required: true,
         },

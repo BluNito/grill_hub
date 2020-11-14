@@ -46,7 +46,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Listening to window size");
     const handleResize = () => {
       store.dispatch(setDimensions(getWindowDimensions()));
     };
