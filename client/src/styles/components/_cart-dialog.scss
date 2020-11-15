@@ -1,3 +1,8 @@
+.cart-dialog-cover {
+  object-fit: cover;
+  width: 100%;
+  max-height: 280px;
+}
 .cart-dialog-title {
   font-size: $subtitle-size;
   color: $main-color;

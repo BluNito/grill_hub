@@ -1,0 +1,184 @@
+[
+  {
+    "type": ["nv", "ff", "sw", "re"],
+    "name": "Apple Pie",
+    "price": 20,
+    "desc": "An apple pie is a pie in which the principal filling ingredient is apple. It is often served with whipped cream, ice cream, or cheddar cheese.",
+    "cover": "apple_pie.jpg"
+  },
+  {
+    "type": ["ve", "br", "ff"],
+    "name": "Baguette",
+    "price": 12,
+    "desc": "A baguette is a long, thin loaf of French bread that is commonly made from basic lean dough. It is distinguishable by its length and crisp crust.",
+    "cover": "baguette.jpg"
+  },
+  {
+    "type": ["ve", "br", "ff", "sw", "sp"],
+    "name": "Baklava",
+    "price": 22,
+    "desc": "Baklava is a rich, sweet dessert pastry made of layers of filo filled with chopped nuts and sweetened and held together with syrup or frosting or honey.",
+    "cover": "baklava.jpg"
+  },
+  {
+    "type": ["nv", "br", "di", "re"],
+    "name": "Barbecue",
+    "price": 16,
+    "desc": "Barbecue or barbeque (informally, BBQ; in Australia barbie, in South Africa braai) is a cooking method, a grilling device, a style of food, and a name for a meal or gathering at which this style of food is cooked and served.",
+    "cover": "barbecue.jpg"
+  },
+  {
+    "type": ["nv", "br", "lu", "di", "sp"],
+    "name": "Bibimbap",
+    "price": 19,
+    "desc": "Bibimbap, sometimes romanized as bi bim bap or bi bim bop, is a Korean rice dish. The term bibim means mixing various ingredients, while the bap noun refers to rice.",
+    "cover": "bibimbap.jpg"
+  },
+  {
+    "type": ["ve", "lu", "so"],
+    "name": "Borscht",
+    "price": 23,
+    "desc": "Borscht is a sour soup common in Eastern Europe and Northern Asia. In English, the word borscht is most often associated with the soup's variant of Ukrainian origin, one of the most famous dishes of Ukrainian cuisine.",
+    "cover": "borscht.jpg"
+  },
+  {
+    "type": ["nv", "lu", "di", "sp", "re"],
+    "name": "Bulgogi",
+    "price": 23,
+    "desc": "Bulgogi, literally fire meat, is a gui made of thin, marinated slices of beef or pork grilled on a barbecue or on a stove-top griddle. It is also often stir-fried in a pan in home cooking.",
+    "cover": "bulgogi.jpg"
+  },
+  {
+    "type": ["ve", "ff", "sp"],
+    "name": "Falafel",
+    "price": 25,
+    "desc": "Falafel is a deep-fried ball, or a flat or doughnut-shaped patty, made from ground chickpeas, fava beans, or both. Herbs, spices, and onion relatives are commonly added to the dough.",
+    "cover": "falafel.jpg"
+  },
+  {
+    "type": ["ve", "ff", "br", "re"],
+    "name": "Grilled Cheese",
+    "price": 15,
+    "desc": "After rigorous scientific testing for this best-ever grilled cheese, we've determined that sandwiches sliced in half on a diagonal actually taste better.",
+    "cover": "grilled_cheeze.jpg"
+  },
+  {
+    "type": ["lu", "so", "sp", "ve"],
+    "name": "Guacamole",
+    "price": 26,
+    "desc": "Guacamole is an avocado-based dip, spread, or salad first developed in Mexico.",
+    "cover": "guacamole.jpg"
+  },
+  {
+    "type": ["di", "re", "ve"],
+    "name": "Kimchi",
+    "price": 20,
+    "desc": "Kimchi, a staple in Korean cuisine, is a famous traditional side dish of salted and fermented vegetables, such as napa cabbage and Korean radish, made with a widely varying selection of seasonings including gochugaru, spring onions, garlic, ginger, and jeotgal, etc.",
+    "cover": "kimchi.jpg"
+  },
+  {
+    "type": ["br", "ff", "so", "re", "nv"],
+    "name": "Laksa",
+    "price": 25,
+    "desc": "Laksa is a spicy noodle soup popular in the Peranakan cuisine of Southeast Asia. Laksa consists of thick wheat noodles or rice vermicelli with chicken, prawn or fish, served in spicy soup based on either rich and spicy curry coconut milk or on sour asam.",
+    "cover": "laksa.jpg"
+  },
+  {
+    "type": ["br", "dr", "sw", "re", "ve"],
+    "name": "Long Black",
+    "price": 15,
+    "desc": "A long black is a style of coffee commonly found in Australia and New Zealand. It is similar to an Americano, but with a stronger aroma and taste.",
+    "cover": "long_black.jpg"
+  },
+  {
+    "type": ["di", "dr", "sp", "ve"],
+    "name": "Mai Tai",
+    "price": 35,
+    "desc": "The Mai Tai is a cocktail based on rum, Curaçao liqueur, orgeat syrup, and lime juice, associated with Polynesian-style settings.",
+    "cover": "mai_tai.jpg"
+  },
+  {
+    "type": ["br", "so", "dr", "re", "ve"],
+    "name": "Makgeolli",
+    "price": 13,
+    "desc": "Makgeolli, sometimes anglicized to makkoli, is a Korean alcoholic beverage. The milky, off-white and lightly sparkling rice wine has a slight viscosity that tastes slightly sweet, tangy, bitter, and astringent.",
+    "cover": "makgeolli.jpg"
+  },
+  {
+    "type": ["br", "lu", "di", "ff", "re", "nv"],
+    "name": "Makizushi",
+    "price": 23,
+    "desc": "Makizushi is also known as rolled sushi or sushi rolls. This common type of sushi is made from seaweed and vinegared rice filled with different fillings.",
+    "cover": "makizushi.jpg"
+  },
+  {
+    "type": ["di", "so", "sp", "ve"],
+    "name": "Miso Soup",
+    "price": 20,
+    "desc": "Miso soup is a traditional Japanese soup consisting of a dashi stock into which softened miso paste is mixed. In addition, there are many optional ingredients that may be added depending on regional and seasonal recipes, as well as personal preference.",
+    "cover": "miso_soup.jpg"
+  },
+  {
+    "type": ["ff", "sw", "re", "ve"],
+    "name": "Moussaka",
+    "price": 18,
+    "desc": "Moussaka is an eggplant- or potato-based dish, often including ground meat, in the Levant, Middle East, and Balkans, with many local and regional variations.",
+    "cover": "moussaka.jpg"
+  },
+  {
+    "type": ["ff", "sw", "re", "ve"],
+    "name": "Panna Cotta",
+    "price": 21,
+    "desc": "It tastes just like the panna cotta served at Italian restaurants. Serve with warm hot fudge sauce and fresh raspberries on top.",
+    "cover": "panna_cotta.jpg"
+  },
+  {
+    "type": ["br", "ff", "sw", "re", "ve"],
+    "name": "Pretzel",
+    "price": 20,
+    "desc": "A pretzel, from dialectal German pronunciation, standard German: Breze is a type of baked pastry made from dough that is commonly shaped into a knot.",
+    "cover": "pretzel.jpg"
+  },
+  {
+    "type": ["ff", "sp", "nv"],
+    "name": "Sarma",
+    "price": 30,
+    "desc": "Sarma is a dish of vine, cabbage, monk's rhubarb or chard leaves rolled around a filling usually based on a combination of grains, like bulgur or rice, and minced meat.",
+    "cover": "sarma.jpg"
+  },
+  {
+    "type": ["ff", "sw", "re", "nv"],
+    "name": "Souffle",
+    "price": 15,
+    "desc": "A soufflé is a baked egg-based dish which originated in early eighteenth-century France. It is made with egg yolks and beaten egg whites combined with various other ingredients and served as a savory main dish or sweetened as a dessert.",
+    "cover": "souffle.jpg"
+  },
+  {
+    "type": ["ff", "di", "ve"],
+    "name": "Spring Rolls",
+    "price": 13,
+    "desc": "Spring rolls are a large variety of filled, rolled appetizers or dim sum found in East Asian, South Asian, Middle Eastern and Southeast Asian cuisine.",
+    "cover": "spring_rolls.jpg"
+  },
+  {
+    "type": ["ff", "sp", "ve", "lu"],
+    "name": "Tamal",
+    "price": 23,
+    "desc": "A tamale is a traditional Mesoamerican and South American dish, made of masa or dough, which is steamed in a corn husk or banana leaf. The wrapping can either be discarded prior to eating or used as a plate.",
+    "cover": "tamal.jpg"
+  },
+  {
+    "type": ["br", "lu", "di", "re", "ff", "sp", "nv"],
+    "name": "Tempura",
+    "price": 23,
+    "desc": "Tempura (天ぷら or 天麩羅, tenpura) is a typical Japanese dish usually consisting of seafood, meat, and vegetables that have been battered and deep fried. The dish was introduced by the Portuguese residing in Nagasaki through the fritter-cooking techniques in the 16th century.",
+    "cover": "tempura.jpg"
+  },
+  {
+    "type": ["br", "lu", "di", "re", "ff", "re", "ve"],
+    "name": "Tortas",
+    "price": 20,
+    "desc": "Torta is a Spanish, Italian, Greek, Albanian, Bulgarian, Maltese, Hungarian, Portuguese, Bosnian, Croatian, Swedish, Serbian, Macedonian, Slovene and also Slovak word with a wide array of culinary meanings, such as a cake, or flatbread.",
+    "cover": "tortas.jpg"
+  }
+]

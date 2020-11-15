@@ -8,8 +8,20 @@
     "name": "Recommended"
   },
   {
-    "tagId": "ho",
-    "name": "Hot"
+    "tagId": "sp",
+    "name": "Special"
+  },
+  {
+    "tagId": "dr",
+    "name": "Drinks"
+  },
+  {
+    "tagId": "ff",
+    "name": "Fast Foods"
+  },
+  {
+    "tagId": "br",
+    "name": "Breakfast"
   },
   {
     "tagId": "lu",
@@ -20,11 +32,23 @@
     "name": "Dinner"
   },
   {
+    "tagId": "ve",
+    "name": "Vegetarian"
+  },
+  {
+    "tagId": "nv",
+    "name": "Non-Vegetarian"
+  },
+  {
     "tagId": "sp",
     "name": "Spicy"
   },
   {
     "tagId": "sw",
     "name": "Sweet"
+  },
+  {
+    "tagId": "so",
+    "name": "Soups"
   }
 ]

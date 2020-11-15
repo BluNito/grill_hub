@@ -47,9 +47,13 @@ export const registerValidation = (credentials) => {
   if (!isEmpty(errors)) return errors;
 };
 
-export const updateUserValidation = (details) => {
-  console.log(details);
-  const errors = {};
-  errors.testing = "testing";
+export const updateUserValidation = (credentials) => {
+  let errors = {};
+  if (isEmpty(credentials.fname)) errors.fname = "First name required";
+  else if (!isLength(credentials.fname, { min: 2, max: 20 }))
+    errors.fname = "First name must be atleast 2 chars";
+  if (isEmpty(credentials.lname)) errors.lname = "Last name required";
+  if (isEmpty(credentials.email)) errors.email = "Email required";
+  if (isEmpty(credentials.contact)) errors.contact = "Contact required";
   if (!isEmpty(errors)) return errors;
 };

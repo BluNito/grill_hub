@@ -4,13 +4,11 @@ const multer = require("multer");
 const { isAdmin, isUser } = require("../utils/auth");
 const Dish = require("../models/Dishes");
 const Tags = require("../utils/tags.json");
-const { uploadFile } = require("../utils/uploader");
+const { uploadFile, uploadFileFromDisk } = require("../utils/uploader");
 const { validateDishEntry } = require("../utils/validation/dish_val");
-const {
-  convertToArray,
-  convertStringToArray,
-} = require("../utils/convert_to_array");
+const { convertToArray } = require("../utils/convert_to_array");
 const { extractDishDetails } = require("../utils/extractors");
+const bulkDishes = require("../utils/bulk_uploader.json");
 
 const hasValidFile = (files) => {
   let checks = {};
@@ -26,7 +24,6 @@ const hasValidFile = (files) => {
 // @access  Admin
 router.post("/add", [isAdmin, multer().any()], async (req, res) => {
   req.body.type = convertToArray(req.body.type);
-  console.log(req.body.type);
   const { errors, isValid } = validateDishEntry(req.body);
   if (!isValid) return res.status(400).json(errors);
   const { errorFile, validFile } = hasValidFile(req.files);
@@ -37,6 +34,7 @@ router.post("/add", [isAdmin, multer().any()], async (req, res) => {
       return res.status(400).json({ name: "Cannot use same name twice" });
     let url;
     if (validFile) url = await uploadFile(req.files[0]);
+    else url = "https://grillhub.s3.ap-south-1.amazonaws.com/default.jpg";
     const newDish = new Dish({
       name: req.body.name,
       price: req.body.price,
@@ -47,6 +45,39 @@ router.post("/add", [isAdmin, multer().any()], async (req, res) => {
     const savedDish = await newDish.save();
     const cleanedDish = extractDishDetails(savedDish);
     return res.json(cleanedDish);
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(500)
+      .json({ error: "An error has occured during food entry" });
+  }
+});
+
+// @route   POST api/dishes/bulkuploader
+// @desc    Add a dish
+// @access  Admin
+router.post("/bulkuploader", isAdmin, async (_, res) => {
+  try {
+    let dish;
+    for (i in bulkDishes) {
+      dish = bulkDishes[i];
+      console.log(dish);
+      const { errors, isValid } = validateDishEntry(dish);
+      if (!isValid) return res.status(400).json(errors);
+      const dbDish = await Dish.findOne({ name: dish.name });
+      if (dbDish)
+        return res.status(400).json({ name: "Cannot use same name twice" });
+      const url = await uploadFileFromDisk(dish.cover);
+      const newDish = new Dish({
+        name: dish.name,
+        price: dish.price,
+        type: dish.type,
+        desc: dish.desc,
+        cover: url,
+      });
+      newDish.save();
+    }
+    return res.json({ status: "Done" });
   } catch (e) {
     console.log(e);
     return res

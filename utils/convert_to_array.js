@@ -1,7 +1,7 @@
 const convertToArray = (list) => {
   if (!list) return null;
   if (typeof list === typeof []) return list;
-  else return JSON.parse(list);
+  return list.split(",");
 };
 const convertStringToArray = (list) => {
   if (!list) return null;

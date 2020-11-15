@@ -30,8 +30,8 @@ const CartAddDialog = (props) => {
   };
   return (
     <Dialog open={open} onClose={handleClose}>
-      <img src={dish.cover} alt="sample" />
       <DialogContent>
+        <img className="cart-dialog-cover" src={dish.cover} alt="sample" />
         <div className="cart-dialog-title">{dish.name}</div>
         <DialogContentText>{dish.desc}</DialogContentText>
         <section className="cart-button-section">

@@ -8,7 +8,14 @@ import Cookies from "js-cookie";
 import setAuthToken from "../../utils/setAuthToken";
 import { SET_USER, CLEAR_USER, SET_MAIN_LOAD } from "./types";
 
-export const cookieSetter = (data, setCookies) => async (dispatch) => {
+export const cookieSetter = (data, { setCookies, saveToken } = {}) => async (
+  dispatch
+) => {
+  if (saveToken) {
+    let creds = Cookies.get("gh_creds");
+    creds = JSON.parse(creds, true);
+    data.token = creds.token;
+  }
   if (setCookies) Cookies.set("gh_creds", data);
   setAuthToken(data.token);
   dispatch({
@@ -31,7 +38,7 @@ export const register = (credentials) => async (dispatch) => {
   } else {
     try {
       const res = await axios.post("/api/users/register", credentials);
-      dispatch(cookieSetter(res.data, true));
+      dispatch(cookieSetter(res.data, { setCookies: true }));
     } catch (e) {
       return e.response.data;
     }
@@ -49,7 +56,7 @@ export const login = (credentials) => async (dispatch) => {
   } else {
     try {
       const res = await axios.post("/api/users/login", credentials);
-      dispatch(cookieSetter(res.data, true));
+      dispatch(cookieSetter(res.data, { setCookies: true }));
     } catch (e) {
       return e.response.data;
     }
@@ -57,13 +64,18 @@ export const login = (credentials) => async (dispatch) => {
 };
 
 export const updateUser = (details) => async (dispatch) => {
+  console.log("Updating user. Details:");
+  console.log(details);
   const errors = updateUserValidation(details);
+  console.log(errors);
   if (errors) {
     return errors;
   } else {
+    console.log("No errors so far");
     try {
       const res = await axios.patch("/api/users/update", details);
-      dispatch(cookieSetter(res.data, true));
+      console.log(res.data);
+      dispatch(cookieSetter(res.data, { setCookies: true, saveToken: true }));
     } catch (e) {
       dispatch(handleBadResponse(e));
     }
