@@ -57,19 +57,15 @@ export const login = (credentials) => async (dispatch) => {
 };
 
 export const updateUser = (details) => async (dispatch) => {
-  console.log(details);
   const errors = updateUserValidation(details);
   if (errors) {
-    console.log("errors found");
     return errors;
   } else {
-    console.log("here now");
     try {
       const res = await axios.patch("/api/users/update", details);
       dispatch(cookieSetter(res.data, true));
     } catch (e) {
-      console.log(e);
-      return e.response.data;
+      dispatch(handleBadResponse(e));
     }
   }
 };
@@ -81,6 +77,12 @@ export const autologin = (credentials) => async (dispatch) => {
     type: SET_MAIN_LOAD,
     payload: false,
   });
+};
+
+export const handleBadResponse = (e) => (dispatch) => {
+  console.log(e);
+  if (e.response.status === 401) dispatch(logout());
+  else return e.response.data;
 };
 
 export const logout = () => (dispatch) => {

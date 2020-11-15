@@ -1,4 +1,5 @@
 import axios from "axios";
+import { handleBadResponse } from "./authActions";
 import { SET_DISHES, CLEAR_DISHES, SET_TAGS, CLEAR_TAGS } from "./types";
 
 export const setDishes = (query) => async (dispatch) => {
@@ -11,7 +12,7 @@ export const setDishes = (query) => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
@@ -23,7 +24,7 @@ export const setTags = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 

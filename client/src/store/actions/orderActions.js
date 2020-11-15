@@ -1,4 +1,5 @@
 import axios from "axios";
+import { handleBadResponse } from "./authActions";
 import {
   SET_CART,
   SET_CART_ITEMS,
@@ -16,8 +17,7 @@ export const setCart = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
@@ -29,8 +29,7 @@ export const addToCart = (id, quantity) => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
@@ -42,8 +41,7 @@ export const setCartInfo = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
@@ -55,8 +53,7 @@ export const removeFromCart = (ids) => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
@@ -68,18 +65,16 @@ export const dropCart = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
-export const initiatePayment = () => async (_) => {
+export const initiatePayment = () => async (dispatch) => {
   try {
     const res = await axios.post("/api/orders/create");
     return res.data;
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 
@@ -91,8 +86,7 @@ export const setOrders = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    console.log(e);
-    return e.response.data;
+    dispatch(handleBadResponse(e));
   }
 };
 

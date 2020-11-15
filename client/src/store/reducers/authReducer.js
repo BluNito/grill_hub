@@ -1,4 +1,3 @@
-import { isEmpty } from "../../utils/validation";
 import { SET_USER, CLEAR_USER } from "../actions/types";
 
 const initialState = {
@@ -11,7 +10,7 @@ const reducer = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        isAuthenticated: isEmpty(action.payload),
+        isAuthenticated: true,
         user: action.payload,
       };
     case CLEAR_USER:

@@ -1,6 +1,6 @@
 export const isEmpty = (value) => {
   let empty = false;
-  if (!empty) empty = true;
+  if (!value) empty = true;
   else if (typeof value === typeof "a" && value.trim().length === 0)
     empty = true;
   else if (typeof value === typeof [] && value.length === 0) empty = true;
@@ -26,7 +26,7 @@ export const loginValidation = (credentials) => {
   let errors = {};
   if (isEmpty(credentials.email)) errors.email = "Email required";
   if (isEmpty(credentials.password)) errors.password = "Password required";
-  else if (isLength(credentials.password, { min: 6 }))
+  else if (!isLength(credentials.password, { min: 6 }))
     errors.password = "Password must contain atleast 6 chars";
   if (!isEmpty(errors)) return errors;
 };
@@ -48,7 +48,8 @@ export const registerValidation = (credentials) => {
 };
 
 export const updateUserValidation = (details) => {
+  console.log(details);
   const errors = {};
-  errors.testing = "hm";
+  errors.testing = "testing";
   if (!isEmpty(errors)) return errors;
 };
