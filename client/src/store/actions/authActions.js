@@ -57,9 +57,13 @@ export const login = (credentials) => async (dispatch) => {
 };
 
 export const updateUser = (details) => async (dispatch) => {
+  console.log(details);
   const errors = updateUserValidation(details);
-  if (errors) return errors;
-  else {
+  if (errors) {
+    console.log("errors found");
+    return errors;
+  } else {
+    console.log("here now");
     try {
       const res = await axios.patch("/api/users/update", details);
       dispatch(cookieSetter(res.data, true));

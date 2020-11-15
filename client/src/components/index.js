@@ -56,7 +56,6 @@ const Landing = (props) => {
     } else {
       res = await props.register(credentials);
     }
-    console.log(res);
     if (res != null) {
       setErrors(res);
       setLoading(false);

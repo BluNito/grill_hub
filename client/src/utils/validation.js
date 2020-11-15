@@ -1,5 +1,4 @@
 export const isEmpty = (value) => {
-  console.log(value);
   let empty = false;
   if (!empty) empty = true;
   else if (typeof value === typeof "a" && value.trim().length === 0)
@@ -7,12 +6,10 @@ export const isEmpty = (value) => {
   else if (typeof value === typeof [] && value.length === 0) empty = true;
   else if (typeof value === typeof {} && Object.keys(value).length === 0)
     empty = true;
-  if (empty) console.log("empty value found");
   return empty;
 };
 
 export const isLength = (value, { min, max } = {}) => {
-  console.log(`${value} ${min} ${max}`);
   if (isEmpty(value)) return false;
   if (typeof value === typeof "") value = value.trim();
   if (typeof value === typeof "" || typeof value === typeof []) {
