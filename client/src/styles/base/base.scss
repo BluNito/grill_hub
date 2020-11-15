@@ -64,3 +64,19 @@ a:hover {
   text-decoration: none;
   color: $main-color;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $accent-color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: ghostwhite;
+}
