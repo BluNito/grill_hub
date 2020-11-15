@@ -8,7 +8,10 @@ const Cart = require("../models/Carts");
 const { isUser } = require("../utils/auth");
 const { forceToInteger } = require("../utils/forcers");
 const { validateCartAdd } = require("../utils/validation/ord_val");
-const { extractCartDetails } = require("../utils/extractors");
+const {
+  extractCartDetails,
+  extractOrdersDetails,
+} = require("../utils/extractors");
 
 const instance = new Razorpay({
   key_id: razorKeyId,
@@ -78,6 +81,24 @@ router.get("/cartitems", isUser, async (req, res) => {
     return res
       .status(500)
       .json({ error: "An error has occurred during adding to cart" });
+  }
+});
+
+// @route   GET api/orders/list
+// @desc    Get all orders
+// @access  Private
+router.get("/list", isUser, async (req, res) => {
+  try {
+    const orders = await Order.find({ cid: req.user.id })
+      .sort({ date: -1 })
+      .limit(5);
+    const cleanedOrder = extractOrdersDetails(orders);
+    return res.json(cleanedOrder);
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(500)
+      .json({ error: "An error has occurred during order list retrieval" });
   }
 });
 
@@ -202,6 +223,7 @@ router.post("/create", isUser, async (req, res) => {
       cart: cartInfo.cartItems,
       total: cartInfo.total,
       paid: false,
+      date: Date.now(),
     });
     await order.save();
     return res.json(bill);

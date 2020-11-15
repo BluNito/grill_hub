@@ -4,6 +4,8 @@ import {
   SET_CART_ITEMS,
   CLEAR_CART,
   CLEAR_CART_ITEMS,
+  SET_ORDERS,
+  CLEAR_ORDERS,
 } from "./types";
 
 export const setCart = () => async (dispatch) => {
@@ -81,6 +83,19 @@ export const initiatePayment = () => async (_) => {
   }
 };
 
+export const setOrders = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/orders/list");
+    dispatch({
+      type: SET_ORDERS,
+      payload: res.data,
+    });
+  } catch (e) {
+    console.log(e);
+    return e.response.data;
+  }
+};
+
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
@@ -90,5 +105,11 @@ export const clearCart = () => {
 export const clearCartItems = () => {
   return {
     type: CLEAR_CART_ITEMS,
+  };
+};
+
+export const clearOrders = () => {
+  return {
+    type: CLEAR_ORDERS,
   };
 };

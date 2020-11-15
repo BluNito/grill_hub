@@ -41,7 +41,7 @@ const Header = (props) => {
       open={isMenuOpen}
       onClose={() => handleAccountMenu(0)}
     >
-      <MenuItem>Profile</MenuItem>
+      <MenuItem onClick={() => history.push("/profile")}>Profile</MenuItem>
       <MenuItem onClick={props.logout}>Logout</MenuItem>
     </Menu>
   );
@@ -49,6 +49,10 @@ const Header = (props) => {
     <AppBar position="static" variant="outlined" color="transparent">
       <Toolbar dense="true">
         <Logo />
+        <Spacer h={20} />
+        <Button variant="outlined" onClick={() => history.push("/home")}>
+          Menu
+        </Button>
         <div className="grow" />
         <IconButton onClick={() => history.push("/cart")}>
           <Badge badgeContent={props.inCart} color="secondary">

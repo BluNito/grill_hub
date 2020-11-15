@@ -9,6 +9,7 @@ import "./styles/styles.scss";
 import Landing from "./components/index";
 import Home from "./components/home";
 import Cart from "./components/cart";
+import Profile from "./components/profile";
 
 import { autologin } from "./store/actions/authActions";
 import PrivateRoute from "./utils/access_routes/privateRoute";
@@ -62,6 +63,7 @@ const App = () => {
             <PublicRoute exact path="/" component={Landing} />
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/cart" component={Cart} />
+            <PrivateRoute exact path="/profile" component={Profile} />
           </Switch>
         </BrowserRouter>
       </Provider>

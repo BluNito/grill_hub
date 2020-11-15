@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "./divider";
 import Button from "@material-ui/core/Button";
 import CartAddDialog from "./cart_add_dialog";
+import { withCurreny } from "../../utils/with_currency";
 
 const MenuItem = (props) => {
   const { dish } = props;
@@ -22,7 +23,7 @@ const MenuItem = (props) => {
           <div className="menu-item-desc">{dish.desc}</div>
           <Divider />
           <div className="menu-item-button">
-            <div className="menu-item-price">₹{dish.price}</div>
+            <div className="menu-item-price">{withCurreny(dish.price)}</div>
             <Button
               variant="contained"
               color="secondary"

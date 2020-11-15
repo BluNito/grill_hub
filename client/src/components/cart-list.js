@@ -13,6 +13,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Checkbox from "@material-ui/core/Checkbox";
 import Spinner from "./shared/spinner";
 import cartTableData from "../utils/cart_table_data.json";
+import { withCurreny } from "../utils/with_currency";
 
 const CartList = (props) => {
   const { headers } = cartTableData;
@@ -77,7 +78,9 @@ const CartList = (props) => {
         <TableCell align={headers[0].align}>{item.name}</TableCell>
         <TableCell align={headers[1].align}>{item.price}</TableCell>
         <TableCell align={headers[2].align}>{item.quantity}</TableCell>
-        <TableCell align={headers[3].align}>{`₹${item.totalPrice}`}</TableCell>
+        <TableCell align={headers[3].align}>
+          {withCurreny(item.totalPrice)}
+        </TableCell>
       </TableRow>
     )),
     <TableRow key={cartInfo.cartItems.length + 1}>
@@ -86,7 +89,7 @@ const CartList = (props) => {
         <div className="cart-total">Total</div>
       </TableCell>
       <TableCell align="right">
-        <div className="cart-total">{`₹${cartInfo.total}`}</div>
+        <div className="cart-total">{withCurreny(cartInfo.total)}</div>
       </TableCell>
     </TableRow>,
   ];

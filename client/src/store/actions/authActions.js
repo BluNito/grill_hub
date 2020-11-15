@@ -1,5 +1,9 @@
 import axios from "axios";
-import { loginValidation, registerValidation } from "../../utils/validation";
+import {
+  loginValidation,
+  registerValidation,
+  updateUserValidation,
+} from "../../utils/validation";
 import Cookies from "js-cookie";
 import setAuthToken from "../../utils/setAuthToken";
 import { SET_USER, CLEAR_USER, SET_MAIN_LOAD } from "./types";
@@ -9,7 +13,14 @@ export const cookieSetter = (data, setCookies) => async (dispatch) => {
   setAuthToken(data.token);
   dispatch({
     type: SET_USER,
-    payload: data,
+    payload: {
+      fname: data.fname,
+      lname: data.lname,
+      contact: data.contact,
+      email: data.email,
+      address: data.address,
+      avatar: data.avatar,
+    },
   });
 };
 
@@ -40,6 +51,20 @@ export const login = (credentials) => async (dispatch) => {
       const res = await axios.post("/api/users/login", credentials);
       dispatch(cookieSetter(res.data, true));
     } catch (e) {
+      return e.response.data;
+    }
+  }
+};
+
+export const updateUser = (details) => async (dispatch) => {
+  const errors = updateUserValidation(details);
+  if (errors) return errors;
+  else {
+    try {
+      const res = await axios.patch("/api/users/update", details);
+      dispatch(cookieSetter(res.data, true));
+    } catch (e) {
+      console.log(e);
       return e.response.data;
     }
   }

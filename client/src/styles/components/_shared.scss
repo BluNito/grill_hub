@@ -27,3 +27,19 @@
 .custom-divider {
   padding: 10px 0px;
 }
+
+.price-container {
+  font-size: $minititle-size;
+  color: $accent-color;
+  font-family: Courgette;
+  padding-right: 10px;
+}
+.price-mini-container {
+  font-size: $normal-size;
+  color: $accent-color;
+  font-family: Courgette;
+  padding-right: 10px;
+}
+.dialog-form-container {
+  padding: 5px;
+}

@@ -46,6 +46,10 @@ const OrderSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  date: {
+    type: Date,
+    required: true,
+  },
 });
 
 module.exports = User = mongoose.model("orders", OrderSchema);

@@ -49,3 +49,9 @@ export const registerValidation = (credentials) => {
     errors.confirm_password = "Passwords must match";
   if (!isEmpty(errors)) return errors;
 };
+
+export const updateUserValidation = (details) => {
+  const errors = {};
+  errors.testing = "hm";
+  if (!isEmpty(errors)) return errors;
+};

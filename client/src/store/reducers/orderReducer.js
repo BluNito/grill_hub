@@ -3,6 +3,8 @@ import {
   SET_CART_ITEMS,
   CLEAR_CART,
   CLEAR_CART_ITEMS,
+  SET_ORDERS,
+  CLEAR_ORDERS,
 } from "../actions/types";
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
     total: 0,
   },
   inCart: 0,
+  orders: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +30,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         cartInfo: action.payload,
       };
+    case SET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
     case CLEAR_CART:
       return {
         ...state,
@@ -39,6 +47,11 @@ const reducer = (state = initialState, action) => {
           cartItems: [],
           total: 0,
         },
+      };
+    case CLEAR_ORDERS:
+      return {
+        ...state,
+        orders: [],
       };
     default:
       return state;

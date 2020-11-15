@@ -11,6 +11,7 @@ import { initiatePayment, dropCart } from "../store/actions/orderActions";
 import KeyValueTableCell from "./shared/key_value_table_cell";
 import Spacer from "./shared/spacer";
 import Spinner from "./shared/spinner";
+import { withCurreny } from "../utils/with_currency";
 
 const CartCheckout = (props) => {
   const { user, total, initiatePayment, dropCart } = props;
@@ -75,7 +76,7 @@ const CartCheckout = (props) => {
         </Button>
       ) : total > 0 ? (
         <Button variant="contained" color="secondary" onClick={handleCheckout}>
-          {`Pay ₹${total}`}
+          {`Pay ${withCurreny(total)}`}
         </Button>
       ) : (
         <div />
