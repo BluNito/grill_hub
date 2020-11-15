@@ -57,6 +57,7 @@ router.post("/add", [isAdmin, multer().any()], async (req, res) => {
 // @desc    Add a dish
 // @access  Admin
 router.post("/bulkuploader", isAdmin, async (_, res) => {
+  return res.json({ error: "This api is disabled because it is dangerous" });
   try {
     let dish;
     for (i in bulkDishes) {
