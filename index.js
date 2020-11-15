@@ -34,9 +34,9 @@ app.use("/api/orders", orders);
 //server routes in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  // app.get("*", (_, res) => {
-  //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  // });
+  app.get("*", (_, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
 }
 
 const port = process.env.PORT || 5000;

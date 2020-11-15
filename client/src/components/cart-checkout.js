@@ -30,8 +30,8 @@ const CartCheckout = (props) => {
       contact: user.contact,
     };
     options.handler = handleCheckoutSuccess;
-    const rzpl = new window.Razorpay(options);
-    rzpl.open();
+    // const rzpl = new window.Razorpay(options);
+    // rzpl.open();
     setLoading(false);
   };
   const handleCheckoutSuccess = (response) => {
