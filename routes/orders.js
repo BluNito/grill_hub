@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Razorpay = require("razorpay");
-const { razorKeyId, razorKeySecret } = require("../config/keys");
+const { razorKeyId, razorKeySecret, razorSecret } = require("../config/keys");
 const Dish = require("../models/Dishes");
 const Order = require("../models/Orders");
 const Cart = require("../models/Carts");
@@ -215,25 +215,27 @@ router.post("/create", isUser, async (req, res) => {
 
 // @route   POST api/orders/complete
 // @desc    Complete an order
-// @access  Private
-router.post("/complete", isUser, async (req, res) => {
+// @access  Public
+router.post("/complete", async (req, res) => {
+  console.log("pinged");
+  if (req.body.event !== "payment.authorized")
+    return res.json({ status: false });
   try {
-    const cart = await Cart.findOneAndUpdate(
-      { cid: req.user.id },
-      {
-        paid: true,
-      },
-      {
-        new: true,
-      }
+    Razorpay.validateWebhookSignature(
+      req.body,
+      req.headers["x-razorpay-signature"],
+      razorSecret
     );
-    const cleanedCart = extractCartDetails(cart);
-    return res.json(cleanedCart);
+    const orderId = req.body.payload.payment.entity.order_id;
+    await Order.findOneAndUpdate(
+      { oid: orderId },
+      { paid: true },
+      { new: true }
+    );
+    return res.json({ status: true });
   } catch (e) {
     console.log(e);
-    return res
-      .status(500)
-      .json({ error: "An error has occured during order creation" });
+    return res.status(203).json({ error: "Invalid signatures passed" });
   }
 });
 
