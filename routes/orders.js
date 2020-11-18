@@ -89,7 +89,7 @@ router.get("/cartitems", isUser, async (req, res) => {
 // @access  Private
 router.get("/list", isUser, async (req, res) => {
   try {
-    const orders = await Order.find({ cid: req.user.id })
+    const orders = await Order.find({ cid: req.user.id, paid: true })
       .sort({ date: -1 })
       .limit(5);
     const cleanedOrder = extractOrdersDetails(orders);
