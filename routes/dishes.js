@@ -157,6 +157,7 @@ router.get("/list", isUser, async (req, res) => {
           }
         : null
     )
+      .skip((req.query.page - 1) * 100)
       .sort({ [req.query.sort_by]: req.query.ascending })
       .limit(100);
     dishes = dishes.map((dish) => extractDishDetails(dish));
